@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0D1b2a 100%, #2e2e2e 50%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f1f1f1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+    color: #a8d5e2;
+}
+
+p {
+    color: #f1f1f1;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* Header */
+header[role="banner"] {
+    background: #00344b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: none;
+    padding: 15px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.logo {
+    flex: 1;
+    min-width: 200px;
+}
+
+.logo-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #a8d5e2;
+    margin: 0;
+}
+
+.menuI {
+    background: transparent;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Botões */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background: #667eea;
+    color: white;
+}
+
+.btn:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(168, 213, 226, 0.3);
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5a67d8;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+/* Seções */
+section.conter {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 60px;
+    align-items: center;
+}
+
+section.conter:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.subsection-title {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.feature-title {
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Imagens */
+.img1, .img2 {
+    text-align: center;
+    flex: 0 0 35%;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.img:hover {
+    transform: scale(1.02);
+}
+
+.tex {
+    flex: 1;
+    text-align: justify;
+}
+y
+.tex p {
+    margin-bottom: 15px;
+}
+
+/* Footer */
+footer[role="contentinfo"] {
+    background: #00344b;
+    width: 100%;
+    margin-top: auto;
+}
+
+.rodape {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.dev, .sobre, .apoio {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    border-top: 3px solid #667eea;
+    padding-top: 20px;
+}
+
+.footer-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #a8d5e2;
+    font-weight: 600;
+}
+
+.dev p, .sobre p, .apoio p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.dev a, .sobre a, .apoio a {
+    color: #a8d5e2;
+}
+
+.dev a:hover, .sobre a:hover, .apoio a:hover {
+    color: #7fa9bb;
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .menuI {
+        width: 100%;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    section.conter {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    section.conter:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .img1, .img2 {
+        flex: 0 0 100%;
+    }
+
+    .tex {
+        text-align: left;
+    }
+
+    .logo-title {
+        font-size: 24px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .rodape {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .dev, .sobre, .apoio {
+        flex: 0 0 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .menuI {
+        flex-direction: column;
+    }
+
+    .logo-title {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .subsection-title {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Autocontrol PRO+ - Sistema de desenvolvimento pessoal com registro diário, gerenciamento de metas, reflexões e apoio comunitário para ajudá-lo a assumir o controle da sua vida.">
+    <meta name="keywords" content="autocontrole, desenvolvimento pessoal, metas, reflexão, apoio, hábitos">
+    <title>Autocontrol PRO+ - Sistema de Autocontrole e Desenvolvimento</title>
+    <link rel="stylesheet" href="linda.css">
+    
+</head>
+<body>
+    <div class="base">
+        <!-- Tela de Login/Cadastro -->
+        <div id="authContainer" class="central">
+            <h1 class="auth-title">BEM-VINDO</h1>
+            <div class="menu-inicial">
+                <div class="menu-s active" onclick="mudarAuthTab('login')">Login</div>
+                <div class="menu-s" onclick="mudarAuthTab('cadastro')">Cadastro</div>
+                <!--<div class="menu-s" onclick="mudarAuthTab('recuperar')">Recuperar de acesso</div>-->
+            </div>
+
+            <!--  Login -->
+            <div id="login" class="formato active">
+                <h2>Entrar no Sistema</h2>
+                <input type="email" id="loginEmail" placeholder="E-mail">
+                <input type="password" id="loginSenha" placeholder="Senha" required>
+                <button onclick="fazerLogin()" class="btn-primary">Entrar</button>
+                <a href="incio.html" class="btn btn-secondary">Principal</a>
+                <div id="loginMessage" class="auth-message"></div>
+            </div>
+
+            <!--  Cadastro -->
+            <div id="cadastro" class="formato">
+                <h2>Criar Conta</h2>
+                <input type="text" id="cadastroNome" placeholder="Nome completo" required>
+                <input type="email" id="cadastroEmail" placeholder="E-mail" required>
+                <input type="password" id="cadastroSenha" placeholder="Senha" required>
+                <input type="password" id="cadastroConfirmarSenha" placeholder="Confirmar senha" required>
+                <button onclick="fazerCadastro()" class="btn-primary">Cadastrar</button>
+                <div id="cadastroMessage" class="auth-message"></div>
+            </div>
+
+            <!-- Recuperar Senha -->
+            <!--<div id="recuperar" class="formato" style="display: none;">
+                <h2>Recuperar Senha</h2>
+                <input type="email" id="recuperarEmail" placeholder="Seu e-mail" required>
+                <button onclick="recuperarSenha()">Comfirmar</button>
+                <div id="recuperarMessage" class="auth-message"></div>
+            </div>-->
+        </div>
+
+        <!-- Sistema Principal -->
+        <div id="mainSystem" style="display: none;">
+            <!-- tela do usuário -->
+            <div class="tela-usuario">
+                <div class="tela">
+                    <span class="perfilname" id="userNameDisplay"></span>
+                    <button class="btn-primary" onclick="mostrarPerfil()" style="padding: 5px 10px;">Meu Perfil</button>
+                </div>
+                <div>
+                    <button class="admin-btn" onclick="abrirModalAdmin()" style="margin-right: 10px;">ADM</button>
+                    <button class="logout-btn" onclick="fazerLogout()">Sair</button>
+                </div>
+            </div>
+
+            <!-- Modal de Perfil do Usuário -->
+            <div class="modal" id="perfilModal" role="dialog" aria-modal="true" aria-labelledby="perfilModalTitle">
+                <div class="modal-content">
+                    <h2 id="perfilModalTitle">Meu Perfil</h2>
+                    <input type="text" id="perfilNome" placeholder="Nome">
+                    <input type="email" id="perfilEmail" placeholder="E-mail">
+                    <input type="password" id="perfilSenhaAtual" placeholder="Senha atual">
+                    <input type="password" id="perfilNovaSenha" placeholder="Nova senha">
+                    <input type="password" id="perfilConfirmarSenha" placeholder="Confirmar nova senha">
+                    <div class="modal-buttons">
+                        <button class="btn-login" onclick="salvarPerfil()">Confirmar</button>
+                        <button class="btn-cancel" onclick="fecharModalPerfil()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Login Admin -->
+            <div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+                <div class="modal-content">
+                    <h2 id="adminModalTitle">Acesso Restrito</h2>
+                    <input type="password" id="adminSenha" placeholder="Digite a senha">
+                    <div class="modal-buttons">
+                        <button class="btn-login" onclick="fazerLoginAdmin()">Entrar</button>
+                        <button class="btn-cancel" onclick="fecharModalAdmin()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Abas principais do menu -->
+            <div class="menu">
+                <button class="tab-btn active" onclick="mudarAba('registro')">Registro Diário</button>
+                <button class="tab-btn" onclick="mudarAba('metas')">Gerenciar Metas</button>
+                <button class="tab-btn" onclick="mudarAba('historico')">Histórico</button>
+                <button class="tab-btn" onclick="mudarAba('reflexao')">Reflexão</button>
+                <button class="tab-btn" onclick="mudarAba('chat')">Chat de apoio</button>
+            </div>
+
+            <!-- Aba: Registro Diário -->
+            <div class="tab-content active" id="tab-registro">
+                <h2>Registro do seu dia </h2>
+                <div style="display: grid; gap: 20px;">
+                    <div class="form-group">
+                            <label>Qual é o teu humor hoje?</label>
+                        <select id="humor">
+                            <option value="Cansado">Cansado</option>
+                            <option value="Feliz">Feliz</option>
+                            <option value="Ansioso">Ansioso</option>
+                            <option value="Tranquilo">Tranquilo</option>
+                            <option value="Motivado">Motivado</option>
+                            <option value="Raiva">Raiva</option>
+                            <option value="Triste">Triste</option>
+                            <option value="Desanimado">Desanimado</option>
+                            <option value="Com fome">Com fome👍</option>
+                            <option value="Confiante">Confiante</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Horas de sono:</label>
+                        <input type="number" id="sono" min="0" max="24" value="8">
+                    </div>
+                    <div class="form-group">
+                        <label>Atividades realizadas:</label>
+                        <textarea id="atividades" rows="3" placeholder="O que você fez hoje? " required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Notas adicionais:</label>
+                        <textarea id="notas" rows="3" placeholder="Observações..." required></textarea>
+                    </div>
+                    <button class="btn-primary" onclick="salvarRegistro()">Salvar Registro</button>
+                </div>
+                
+                <h3 style="margin: 30px 0 20px;">Últimos Registros</h3>
+                <div id="listaRegistros"></div>
+            </div>
+
+            <!-- Aba: Gerenciar Metas -->
+            <div class="tab-content" id="tab-metas">
+                <h2>Gerenciar Metas</h2>
+                <div style="margin-bottom: 30px;">
+                    <h3>Criar Nova Meta</h3>
+                    <div class="form-group">
+                        <label>Descrição da meta:</label>
+                        <input type="text" id="metaDescricao" placeholder="Ex: Ler 30 minutos por dia">
+                    </div>
+                    <div class="form-group">
+                        <label>Dias para conclusão:</label>
+                        <input type="number" id="metaDias" min="1" value="30">
+                    </div>
+                    <button class="btn-primary" onclick="criarMeta()">Criar Meta</button>
+                </div>
+                
+                <h3>Metas Ativas</h3>
+                <div id="listaMetas"></div>
+            </div>
+
+            <!-- Aba: Histórico -->
+            <div class="tab-content" id="tab-historico">
+                <h2>Histórico de Progresso</h2>
+                <div class="stats-grid" style="margin-bottom: 30px;">
+                    <div class="stat-card">
+                        <h3>Total de Registros</h3>
+                        <div class="number" id="totalRegistros">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Metas Concluídas</h3>
+                        <div class="number" id="metasConcluidas">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Média de Sono</h3>
+                        <div class="number" id="mediaSono">0h</div>
+                    </div>
+                </div>
+                
+                <h3>Linha do Tempo</h3>
+                <div id="linhaTempo"></div>
+            </div>
+
+            <!-- Aba: Reflexão -->
+            <div class="tab-content" id="tab-reflexao">
+                <h2>Exercícios de Reflexão</h2>
+                <div style="display: grid; gap: 30px;">
+                    <div>
+                    <h3>Diário de reflexão</h3>
+                        <div class="form-group">
+                            <label>3 coisas pelas quais você é grato hoje:</label>
+                            <textarea id="gratidao1" rows="2" placeholder="1."></textarea>
+                            <textarea id="gratidao2" rows="2" placeholder="2." style="margin-top: 10px;"></textarea>
+                            <textarea id="gratidao3" rows="2" placeholder="3." style="margin-top: 10px;"></textarea>
+                        </div>
+                        <button class="btn-primary" onclick="salvarGratidao()">Salvar Gratidão</button>
+                    </div>
+                    
+                    <div>
+                        <h3>Autoavaliação do Dia</h3>
+                        <div class="form-group">
+                            <label>Qual nota você dá ao seu dia? (de 0 a 20)</label>
+                            <input type="number" id="notaDia" min="0" max="20" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label>O que poderia ter feito diferente?</label>
+                            <textarea id="aprendizado" rows="3"></textarea>
+                        </div>
+                        <button class="btn-primary" onclick="salvarAutoavaliacao()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Aba do chat de apoio -->
+            <div class="tab-content" id="tab-chat">
+              <div class="chat-container">
+                  <h2 class="chat-title">BEM-VINDO AO CHAT</h2>
+                  <p class="chat-description">
+                     Junte-se ao nosso grupo e descubra um espaço onde você é ouvido, encontra apoio prático e pequenas atitudes que podem transformar seu dia — venha agora, estamos te esperando; cada mensagem pode ser o empurrão que faltava, entre e sinta a diferença que uma comunidade atenta pode fazer.
+                  </p>
+                  <a href="https://chat.whatsapp.com/KTXSd5xG3Vw7KvAkXos7m2?mode=gi_t" class="btn-chat" target="_blank" rel="noopener">Entrar</a>
+              </div>
+            </div>
+            <!--  Administrativa -->
+            <div class="tab-content" id="tab-admin">
+                <div class="ADM">
+                    <h2>Painel do Administrativo</h2>
+                    <button class="logout-btn" onclick="logoutAdmin()">Sair do Admin</button>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Usuários Ativos</h3>
+                        <div class="number" id="adminTotalUsuarios">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total de Registros</h3>
+                        <div class="number" id="adminTotalRegistros">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Metas Criadas</h3>
+                        <div class="number" id="adminTotalMetas">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Reflexões</h3>
+                        <div class="number" id="adminTotalReflexoes">0</div>
+                    </div>
+                </div>
+                
+                <h3>Usuários Cadastrados</h3>
+                <table class="users-table" role="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Data Cadastro</th>
+                            <th scope="col">Último Acesso</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaUsuarios"></tbody>
+                </table>
+                
+                <h3 style="margin-top: 30px;">Logs de Acesso</h3>
+                <table class="users-table" role="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usuário</th>
+                            <th scope="col">Data/Hora</th>
+                            <th scope="col">Ação</th>
+                            <th scope="col">IP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaLogs"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="serve3.js">
+       
+    </script>
+</body>
+</html>
